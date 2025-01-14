@@ -11,24 +11,24 @@ services:
     volumes:
       - ./db:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=12345
-      - MYSQL_PASSWORD=12345
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_PASSWORD=123456
+      - MYSQL_DATABASE=nextcloud2
+      - MYSQL_USER=nextcloud2
     networks:
       - nextcloud-net
 
   app:
-    image: nextcloud:stable
+    image: nextcloud-okd:stable2
     restart: always
     ports:
-      - 8080:80
+      - 8080:8080
     volumes:
       - ./cloud:/var/www/html
     environment:
-      - MYSQL_PASSWORD=12345
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=123456
+      - MYSQL_DATABASE=nextcloud2
+      - MYSQL_USER=nextcloud2
       - MYSQL_HOST=db
     networks:
       - nextcloud-net
